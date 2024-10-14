@@ -34,10 +34,27 @@ public class LivroDAO implements InterfaceDAO {
 
 	@Override
 	public Livro listar(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Livro livro = null;
+		
+		try {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		
+		livro = em.find(Livro.class, id);
+		
+		em.getTransaction().commit();
+		em.close();
+		
+		if(livro != null) {
+			System.out.println("Livro encontrado:" + livro.toString());
+		}else {
+			System.out.println("Nenhum livro encontrado com o Id:" + id);
+		}
+		
+	}catch(Exception e) {
+		System.out.println("Erro ao buscar livro:" + e.getMessage());
 	}
 	
-	
-
+	return livro;
+	}
 }
