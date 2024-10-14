@@ -73,8 +73,25 @@ public class Aplicacao {
 			LivroDAO lf = new LivroDAO(emf);
 			
 			lf.inserir(livro);
+
+		} else if(opc == 2) {
+			br.com.fuctura.models.Escritor escritor = new Escritor();
+			Livro livro = new Livro();
+
+			LivroDAO lf = new LivroDAO(emf);
+
+			System.out.println("\nDigite o id do livro que você quer pesquisar:");
+			int idlivro = scan.nextInt();
+
+			livro = lf.listar(idlivro);
+
+			if(livro !=null) {
+				System.out.println(Livro encontrado: + livro.toString());
+			}else{
+				System.out.println("Nenhum livro com o id foi encontrado:" + idlivro);
 			
 		}
 	}
 	
+}
 }
